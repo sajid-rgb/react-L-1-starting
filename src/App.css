@@ -1,0 +1,12 @@
+.navigation{
+  display: flex;
+  flex-direction: row;
+  align-items:flex-end;
+  justify-content:flex-end;
+  margin-right: 20px;
+  
+}
+li{
+  list-style: none;
+  padding-right: 20px;
+}
