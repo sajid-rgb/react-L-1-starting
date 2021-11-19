@@ -15,6 +15,11 @@ export const navBar = [{
   },
   {
     id: 4,
+    nav: 'Admin',
+    pathName:'/admin'
+  },
+  {
+    id: 4,
     nav: 'Login',
     pathName:'/login'
   }]

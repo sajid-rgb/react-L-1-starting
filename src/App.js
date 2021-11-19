@@ -15,19 +15,15 @@ import { navBar } from './Components/data/navbar.js';
 import SingleCountry from './Components/Home/Country/SingleCountry.js';
 import PrivateRoute from './Components/Login/PrivateRoute.js';
 import SignUp from './Components/Login/SignUp.js';
-import firebase from 'firebase';
-import { firebaseConfig } from './firebase.config.js';
+import firebase from './firebase.config.js';
+import Admin from './Components/Admin/Admin.js';
 export const LoginContext = createContext()
 
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
   const isSignIn = () => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth.onAuthStateChanged((user) => {
       if (user) {
         setIsLogin(true)
         // User is signed in, see docs for a list of available properties
@@ -63,6 +59,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute path="/about">
               <About />
+            </PrivateRoute>
+            <PrivateRoute path="/admin">
+              <Admin />
             </PrivateRoute>
             <Route path="/login">
               <Login />

@@ -2,20 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { LoginContext } from '../../App';
 import AppButton from '../Home/ui/AppButton';
-import firebase from "firebase";
 import { Link } from 'react-router-dom';
-import { firebaseConfig } from '../../firebase.config';
 import Error from '../Home/ui/Error';
+import firebase from '../../firebase.config';
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
     const { isLogin, setIsLogin } = useContext(LoginContext)
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -23,7 +17,7 @@ const Login = () => {
 
         if (email && password) {
             console.log(email, password)
-            firebase.auth().signInWithEmailAndPassword(email, password)
+            firebase.auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                     // Signed in
                     var user = userCredential.user;
@@ -51,7 +45,7 @@ const Login = () => {
 
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth()
+        firebase.auth
             .signInWithPopup(provider)
             .then((result) => {
                 var credential = result.credential;
