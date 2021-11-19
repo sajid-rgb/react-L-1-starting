@@ -5,6 +5,7 @@ import { LoginContext } from '../../App';
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { isLogin} = useContext(LoginContext)
+  console.log(isLogin);
   return (
     <Route
       {...rest}

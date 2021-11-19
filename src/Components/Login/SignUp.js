@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import AppButton from '../Home/ui/AppButton';
-import firebase from 'firebase';
 import Error from '../Home/ui/Error';
-import { firebaseConfig } from '../../firebase.config';
+import firebase from '../../firebase.config';
 const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
     const handleSignUp = () => {
         if (password === confirmPassword) {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            firebase.auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                     // Signed in 
                     var user = userCredential.user;
